@@ -44,10 +44,10 @@
               "    }",
               "});",
               "",
-              "// Save the responseData as an environment variable",
+              "// Save the responseData as a pm.variable",
               "pm.variables.set('categoryData', responseData);",
               "",
-              "// A counter for products within a main category to fecth",
+              "// Set a counter for products within a main category to fecth as a pm.variable",
               "pm.variables.set('categoryCounter', 0);"
             ],
             "type": "text/javascript"
@@ -88,9 +88,8 @@
           "listen": "prerequest",
           "script": {
             "exec": [
-              "// Unpack from JSON all the categories",
+              "// Get the categories and the categoryCounter from pm.variables",
               "let categories = pm.variables.get('categoryData');",
-              "// Get the category counter and convert to number (using +)",
               "let categoryCounter = pm.variables.get('categoryCounter');",
               "",
               "// Get the category part of the url and set it as an environment variable",
@@ -107,9 +106,8 @@
           "listen": "test",
           "script": {
             "exec": [
-              "// Unpack from JSON all the categories",
+              "// Get the categories and the categoryCounter from pm.variables",
               "let categories = pm.variables.get('categoryData');",
-              "// Get the category counter and convert to number (using +)",
               "let categoryCounter = pm.variables.get('categoryCounter');",
               "",
               "// Tests",
