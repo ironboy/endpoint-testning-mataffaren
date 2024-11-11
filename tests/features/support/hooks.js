@@ -8,11 +8,19 @@ import {
 // (Chalk is a nom module used to color text output to the terminal)
 const stepTextMaxLength = 90;
 
+// Types translation
+const types = {
+  Context: 'Given',
+  Action: ' When',
+  Outcome: ' Then'
+}
+
 // Counters 
-let steps = 0, scenarios = 0, failedScenarios = 0;
+let steps = 0, scenarios = 0, failedScenarios = 0, stepsInScenario = 0;
 
 // Before each scenario
 Before(function ___(info) {
+  stepsInScenario = 0;
   let { name, description } = info.gherkinDocument.feature;
   let { name: scenario } = info.pickle;
   if (this.__skip !== scenario) {
@@ -26,7 +34,9 @@ Before(function ___(info) {
 });
 
 // After each scenario
+let latestAfterInfo;
 After(function ___(info) {
+  latestAfterInfo = info;
   let { name: scenario } = info.pickle;
   if (!this.__skip) {
     console.log('');
@@ -55,11 +65,7 @@ let prevType = '';
 AfterStep(function ___(info) {
   if (this.__skip) { return; }
   steps++;
-  let types = {
-    Context: 'Given',
-    Action: ' When',
-    Outcome: ' Then'
-  }
+  stepsInScenario++;
   let { type, text } = info.pickleStep;
 
   // Replace text from feature with text set by step if there is any
@@ -107,6 +113,11 @@ AfterAll(function ___() {
     chalk.yellowBright(((Date.now() - startTime) / 1000).toFixed(2)),
     chalk.whiteBright('seconds'), '\n'
   );
+  if (stepsInScenario > 0 && latestAfterInfo.pickle.steps.length > stepsInScenario) {
+    console.log(chalk.redBright("Missing steps:\n"),
+      chalk.yellowBright(latestAfterInfo.pickle.steps.slice(stepsInScenario)
+        .map(x => types[x.type].trim() + ' ' + x.text).join('\n')));
+  }
   process.exit();
 });
 

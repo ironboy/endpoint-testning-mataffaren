@@ -4,6 +4,8 @@ import path from 'path';
 // Convert Scenario Outlines with  | {dynamic: true, max: X} |
 // or just | {dynamic: true} |
 // into scenario outlines Cucumber understands
+fs.rmSync(path.join(import.meta.dirname, '__temp'), { recursive: true, force: true });
+fs.mkdirSync(path.join(import.meta.dirname, '__temp'));
 fs
   .readdirSync(path.join(import.meta.dirname, 'tests', 'features'), { recursive: true })
   .filter(x => x.endsWith('.feature'))
