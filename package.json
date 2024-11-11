@@ -9,7 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "cucumber-js tests/features --import tests/features/support --import tests/features/step-definitions  --format summary --fail-fast",
+    "test": "node makePrecompile.js && cucumber-js __temp --import tests/features/support --import tests/features/step-definitions  --format summary --fail-fast",
     "newman-test": "newman run postman-collections/mataffaren.collection.json",
     "make-steps": "node makeSteps.cjs"
   },

@@ -16,5 +16,6 @@ Feature: Category list
     And the response time should be below 1000 milliseconds
     And there should be at least 1 product in the category
 
+    # Use dynamic data (from previous scenario)
     Examples:
-      | dynamic |
+      | {dynamic: 'categoryUrlParts'} |

@@ -1,0 +1,1 @@
+This is a folder for temporary compiled features (making "dynamic" scenario outlines possible).

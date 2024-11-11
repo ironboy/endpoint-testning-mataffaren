@@ -6,11 +6,6 @@ Given('that I am on the domain {string}', async function (urlPrefix) {
 });
 
 When('I visit the endpoint {string} {string}', async function (method, url) {
-  if (url.includes('{categoryUrlPart')) {
-    const categoryToVisit = this.categoryUrlParts.shift();
-    url = url.replaceAll('{categoryUrlPart}', categoryToVisit);
-    this.customStepText = this.stepText.replaceAll('{categoryUrlPart}', categoryToVisit);
-  }
   await this.fetch(url, { method });
   // console.log('response:', this.response, '\nresponseTime:', this.responseTime, '\njson:', this.json);
 });
@@ -25,10 +20,10 @@ Then('the response time should be below {float} milliseconds', async function (m
 
 Then('there should be at least {float} main categories', async function (numberOfCategories) {
   expect(this.json.children.length).to.be.at.least(numberOfCategories);
-  // store the category url parts for the next scenario
+  // store the category url parts for the next scenario (see usage in feature file)!
   this.categoryUrlParts = this.json.children.map(x => x.url);
 });
 
-Then('there shuld be at least {int} product in the category', async function (minimumNumberOfProducts) {
+Then('there should be at least {int} product in the category', async function (minimumNumberOfProducts) {
   expect(this.json.results.length).to.be.at.least(minimumNumberOfProducts);
 });
