@@ -3,7 +3,7 @@ import { setWorldConstructor, setDefaultTimeout } from '@cucumber/cucumber';
 class CustomWorld {
 
   setUrlPrefix(urlPrefix) {
-    this.urlPrefx = urlPrefix
+    this.urlPrefx = urlPrefix;
   }
 
   async fetch(url, options, responseType = 'json') {
