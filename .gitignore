@@ -1,5 +1,5 @@
 # Folder for "compiled features" (for dynamic scenario outlines)
-wCompiled
+__temp
 
 # Logs
 logs
