@@ -1,5 +1,6 @@
-Feature: Category list
-  As a REST-api endpoint consumer I want to be able to get a list of all categories in the shop.
+Feature: Categories
+  As a REST-api endpoint consumer I want to be able to get a list of all categories in the shop
+  and check that all main categories contain at least one product.
 
   Background:
     Given that I am on the domain "http://localhost:4000"

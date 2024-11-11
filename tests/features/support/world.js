@@ -32,10 +32,10 @@ class CustomWorld {
 }
 
 // Normally the world gets recreated between each scenario by Cucumber!
-// This means: Anything we store in the world is only persistant in inside ONE scenario
-// But: In this set of tests we want properties stored on this/the world in our step definitions
-// to be persistant between scenarios, so we use a small "trick" for this
-// - creating a class that always returns the same instance of our CustomWorld
+// This means: Anything we store in the world is only persistant within ONE scenario
+// But: In endpoint-testing we often want to use properties/variables that
+// are persistant between scenarios, so we use a small "trick" for this
+// - we create a class that always returns the same instance of our CustomWorld
 let persistantWorld = new CustomWorld();
 class PersistantWorld {
   constructor() {
@@ -44,4 +44,6 @@ class PersistantWorld {
 }
 
 setWorldConstructor(PersistantWorld);
+
+// Max timeout per step
 setDefaultTimeout(60000);
