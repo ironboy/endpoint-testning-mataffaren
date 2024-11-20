@@ -1,6 +1,4 @@
 config:
-  # This is a test server run by team Artillery
-  # It's designed to be highly scalable
   target: http://127.0.0.1:4000
   phases:
     - duration: 10
