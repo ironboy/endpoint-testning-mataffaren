@@ -4,7 +4,7 @@ import path from 'path';
 const app = express();
 const port = 4000;
 
-// log 
+// log all request to the server
 app.use((req, res, next) => {
   next();
   console.log(req.url);
