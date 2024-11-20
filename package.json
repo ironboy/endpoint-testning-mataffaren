@@ -11,9 +11,11 @@
     "preview": "vite preview",
     "test": "node makePrecompile.js && cucumber-js __temp --import tests/features/support --import tests/features/step-definitions  --format summary --fail-fast",
     "newman-test": "newman run postman-collections/mataffaren.collection.json",
-    "make-steps": "node makeSteps.cjs"
+    "make-steps": "node makeSteps.cjs",
+    "load-test-basic": "artillery run load-tests/basic.yml"
   },
   "dependencies": {
+    "artillery": "^2.0.21",
     "concurrently": "^8.0.1",
     "express": "^4.18.2",
     "react": "^18.2.0",
